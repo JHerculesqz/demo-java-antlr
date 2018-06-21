@@ -1,0 +1,46 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.huawei'
+version = ''
+sourceCompatibility = 1.8
+
+eclipse {
+  jdt {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	file {
+	  File dir = file('.settings')
+	  dir.mkdirs()
+
+	  File f = file('.settings/org.eclipse.core.resources.prefs')
+	  f.write('eclipse.preferences.version=1\n')
+	  f.append('encoding/<project>=utf-8')
+	}
+  }
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+}
